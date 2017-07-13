@@ -1,0 +1,187 @@
+<html> 
+	<head> 
+	   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
+	   <meta name="viewport" content="width=device-width, initial-scale=1">
+	   <style>
+			#mainDiv {
+				width: 700px;
+				margin-top: 20px;
+				margin-left: 100px;
+				
+			}
+			
+			#policyHolderDiv {
+				width: 650px;
+				margin:5px 5px 5px 5px;
+				float: left;
+			}
+			#labelDiv {
+				width: 45%;
+				margin:5px  0 0 0;
+				float: left;
+			}
+			#elementDiv {
+				width: 45%;
+				margin:5px  0 0 0;
+				float: left;
+			}
+			
+			.mandatory { 
+				color: red;
+			}
+			.label { 
+				display : block;
+				margin 	: 25px  15px 15px 15px;
+				text-align: right;
+			}
+			.input { 
+				display : block;
+				margin 	: 23px  15px 15px 15px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-sizing: border-box;
+			}
+			#errorDiv{
+				display: none;
+				color: #D8000C; 
+				font-weight: bold; 
+				padding-bottom: 10px; 
+				margin-left:115px;
+				margin-top:	50px;
+				
+			}
+			
+	   </style>
+	   <script type="text/javascript">
+	   
+			function validateForm(){
+				var errorFlag = false;
+				var x = document.getElementsByClassName("input");
+				for(var i =0; i< x.length; i++){
+				
+					if( x[i].value.length === 0){
+						if(!errorFlag){
+							errorFlag = true;
+							
+						}
+						x[i].style.backgroundColor = "#ddd";
+					}else{
+						x[i].style.backgroundColor = "";
+					}
+				}
+				if(errorFlag){
+					document.getElementById("errorDiv").innerHTML = "Please enter all the required(*) fields...Required fields are highlighted";
+					document.getElementById("errorDiv").style.display = "block";
+					return false;
+				}else{
+					document.getElementById("errorDiv").innerHTML = "Validation Successful....! Great to go...";
+					document.getElementById("errorDiv").style.display = "block";
+					return true;
+				}
+			}
+	   </script>
+	   
+	 </head
+	<body>
+			<div id="errorDiv">
+			</div>
+			<div name="mainDiv" id="mainDiv">
+				<div name="policyHolderDiv" id="policyHolderDiv">
+					<fieldset>
+						<legend><font color="red">Policy Holder information</font></legend>
+						
+						<div id="labelDiv">
+							<label for="firstName" class="label">
+								<span class="mandatory">*</span><span>First Name:</span>
+							</label>
+							
+							<label for="lastName" class="label">
+								<span class="mandatory">*</span><span>Last Name:</span>
+							</label>
+							
+							<label for="lastName" class="label">
+								<span class="mandatory">*</span><span>Phone Number:</span>
+							</label>
+							
+							<label for="lastName" class="label">
+								<span class="mandatory">*</span><span>Email Id:</span>
+							</label>
+						</div>
+						
+						<div id="elementDiv">
+							<input type="text" name="firstName" 	id="firstName" class="input"></input>
+							<input type="text" name="lastName" 		id="lastName"  class="input"></input>
+							<input type="text" name="phoneNumber" 	id="phoneNumber"  class="input"></input>
+							<input type="text" name="emailId" id="emailId" class="input"  class="input"></input>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend><font color="red">Loss information</font></legend>
+						<div id="labelDiv">
+							<label for="firstName" class="label">
+								<span class="mandatory">*</span><span>Date of Loss(MM/DD/YYYY):</span>
+							</label>
+							
+							<label for="lastName" class="label">
+								<span class="mandatory">*</span><span>Facts of Accident:</span>
+							</label>
+							
+							<label for="lastName" class="label">
+								<span class="mandatory">*</span><span>Police Report Number:</span>
+							</label>
+						</div>
+						
+						<div id="elementDiv">
+							<input type="text" name="dateOfLoss" 				id="dateOfLoss" 			class="input"></input>
+							<input type="text" name="factOfAccident" 			id="factOfAccident"  		class="input"></input>
+							<input type="text" name="policeReportNumber" 		id="policeReportNumber"  	class="input"></input>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend><font color="red">Vehicle Details</font></legend>
+						<div id="labelDiv">
+							<label for="firstName" class="label">
+								<span class="mandatory">*</span><span>Driver Name:</span>
+							</label>
+							
+							<label for="lastName" class="label">
+								<span class="mandatory">*</span><span>Vehicle Year:</span>
+							</label>
+							
+							<label for="lastName" class="label">
+								<span class="mandatory">*</span><span>Vehicle Make:</span>
+							</label>
+							<label for="lastName" class="label">
+								<span class="mandatory">*</span><span>Vehicle Model:</span>
+							</label>
+						</div>
+						
+						<div id="elementDiv">
+							<input type="text" name="driverName" 				id="driverName" 			class="input"></input>
+							<input type="text" name="vehicleYear" 				id="vehicleYear"  			class="input"></input>
+							<input type="text" name="vehicleMake" 				id="vehicleMake"  			class="input"></input>
+							<input type="text" name="vehicleModel" 				id="vehicleModel"  			class="input"></input>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend><font color="red">Others</font></legend>
+						<div id="labelDiv">
+							<label for="firstName" class="label">
+								<span class="mandatory">*</span><span>Other Driver Name:</span>
+							</label>
+							<label for="firstName" class="label">
+								<span class="mandatory">*</span><span>Other Driver Contact:</span>
+							</label>
+						</div>
+						
+						<div id="elementDiv">
+							<input type="text" name="otherDriverName" 			id="otherDriverName" 				class="input"></input>
+							<input type="text" name="otherDriverContact" 		id="otherDriverContact"  			class="input"></input>
+						</div>
+					</fieldset>
+					
+					<p><button onclick="validateForm();">Submit Claim</button>
+				<div>
+			</div>
+	</body>
+</html>

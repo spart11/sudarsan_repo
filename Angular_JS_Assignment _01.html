@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script>
+		var app = angular.module("myApp",[]);
+		app.controller("myController_1", function($scope){
+		
+			$scope.caculateAverage = function(m1,m2,m3){
+				var sum = parseInt(m1,10) + parseInt(m2,10) + parseInt(m3,10);
+				sum = sum /3;
+				if(isNaN(sum)){
+					sum = ' ';
+				}
+				return sum;
+			};
+			$scope.studentArray = [];
+			$scope.addStudent = function(){
+				var student = {
+					"name" 	: $scope.studentName,
+					"sub1" 	: $scope.mark1,
+					"sub2" 	: $scope.mark2,
+					"sub3" 	: $scope.mark3,
+					"total"	: parseInt($scope.mark1,10) + parseInt($scope.mark2,10) + parseInt($scope.mark1,10),
+					"avg"	: (parseInt($scope.mark1,10) + parseInt($scope.mark2,10) + parseInt($scope.mark1,10))/3
+				}
+				$scope.studentArray.push(student);
+				document.getElementById("studentForm").reset();				
+				$scope.studentName = ' ';
+				$scope.mark1 = ' ';
+				$scope.mark2 = ' ';
+				$scope.mark3 = ' ';
+				
+			};
+		});
+	</script>
+	<head>
+		<style>
+			#studentTable { 
+				width: 100%;
+				padding: 5px;
+				text-align: center;
+				
+			}
+			#studentTable th,td{ 
+			border: 1px solid lightblue;
+			}
+			#mainDiv {
+				margin-left: 	100px;
+				margin-top: 	50px;
+				background-color: aliceblue;
+				width:615px;
+				float:left;"
+			}
+			.legend{
+				
+			}
+
+		</style>
+	</head>
+	<body ng-app="myApp"  ng-controller="myController_1">
+				<div id="mainDiv" >
+					<fieldset style="width:600px; margin-top:50px; margin-right:5px;" >
+						<legend class="legend"> <font color="red">Student Info</font></legend>
+						<form name="studentForm" id="studentForm" >
+							<div id="labelDiv" style="float:left; width:250px; text-align:right; margin-right:15px;"  >
+									<p>Student Name:	</p>
+									<p>Subject 1 Mark:	</p>
+									<p>Subject 2 Mark:	</p>
+									<p>Subject 3 Mark:	</p>
+							</div>
+							<div id="elementDiv" style="float:left; width:250px;"  >
+									<p><input type="text" name="studentName" ng-model="studentName">	</p>
+									<p><input type="text" name="mark1" ng-model="mark1">			</p>
+									<p><input type="text" name="mark2" ng-model="mark2">			</p>
+									<p><input type="text" name="mark3" ng-model="mark3">			</p>
+							</div>
+							
+							<div style="width: 200px; margin-left: 300px;"><input type="submit" value="submit" ng-click="addStudent()"><div>
+							
+						</form>
+						<br/>
+					</fieldset>	
+					
+					<fieldset style="width:600px; float:left; margin-top:50px; margin-right:25px;">
+						<legend><font color="red">User Entered Student details</font></legend>
+						<div id="labelDiv2" style="float:left; width:180px; text-align:right; margin-right:15px;"  >
+								<p>Student Name:</p>
+								<p>Subject 1 Mark:</p>
+								<p>Subject 2 Mark:</p>
+								<p>Subject 3 Mark:</p>
+								<p>Average using expression:</p>	
+								<p>Average using function:</p>	
+								
+						</div>
+						<div id="element2" style="float:left; width:180px; text-align:right; margin-right:25px;"  >
+								<p>&nbsp;<span ng-bind="studentName"></span></p>
+								<p>&nbsp;<span ng-bind="mark1"></span></p>
+								<p>&nbsp;<span ng-bind="mark2"></span></p>
+								<p>&nbsp;<span ng-bind="mark3"></span></p>
+								<p>&nbsp;<span>{{ (+mark1 + +mark2 + +mark3)/3 == 0 ? ' ' : (+mark1 + +mark2 + +mark3)/3 }}</span></p>
+								<p>&nbsp;<span>{{ caculateAverage(mark1,mark2,mark3) }}</span></p>
+						</div>
+					</fieldset>
+					
+					<fieldset style="width:600px; float:left; margin-top:50px; margin-bottom:30px; margin-right:25px;">
+						<legend>
+							<font color="red">Students Records</font>
+						</legend>
+						<table id="studentTable">
+							<thead>
+								<th>Name</th>
+								<th>Mark 1</th>
+								<th>Mark 2</th>
+								<th>Mark 3</th>
+								<th>Total</th>
+								<th>Average</th>
+							</thead>
+							<tr ng-repeat="s in studentArray">
+								<td>{{s.name}}</td>
+								<td>{{s.sub1}}</td>
+								<td>{{s.sub2}}</td>
+								<td>{{s.sub3}}</td>
+								<td>{{s.total}}</td>
+								<td>{{s.avg}}</td>
+							</tr>
+						</table>
+					</fieldset>
+				</div>
+					
+		
+	</body>
+</html>
